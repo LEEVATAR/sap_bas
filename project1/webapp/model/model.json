@@ -1,0 +1,127 @@
+[   
+    {
+        "DeliveryType": "Delivery Schedule", 
+        "Vendor": "PA21",
+        "Plant": "HVJ7",
+        "Material": "93480D2500",
+        "Gate": "",
+        "ASNNo": "HB07210615HVJ70002",
+        "DepartureDate": "2023-04-20",
+        "DepartureTime": "02:00:00",
+        "ArrivalDate": "2023-04-20",
+        "ArrivalTime": "03:00:00",
+        "InvoiceNo": "Inv01",
+        "CarNo": "NL01AA4463",
+        "DriverName": "santu",
+        "DriverPhone": "01012341234",
+        "DTL": "HMMI",
+        "Description": "PAD-HEAD LINING ROOM LAMP",
+        "ReqQty": 30,
+        "AsnQty": 0,
+        "Stock":  0,
+        "PerCase": 10,
+        "BoxQty": 20,
+        "DeliveryQty": 10,
+        "GrType": "GRType01",
+        "Detail": [
+            {
+                "Date": "2023-04-20",
+                "Time": "10:30",
+                "ReqQty": "20"
+            },
+            {
+                "Date": "2023-04-20",
+                "Time": "15:30",
+                "ReqQty": "40"
+            }
+        ],
+        "Label": [
+            {
+                "BoxLabel": "A is b"
+            },
+            {
+                "BoxLabel": "B is C"
+            },
+            {
+                "BoxLabel": "C"
+            }
+        ]            
+    },
+    {
+        "DeliveryType": "Delivery Schedule", 
+        "Vendor": "PA21",
+        "Plant": "HVJ7",
+        "Material": "93480I3500",
+        "Gate": "",
+        "ASNNo": "HB07210616HVJ70001",
+        "DepartureDate": "2023-07-10",
+        "DepartureTime": "03:00:00",
+        "ArrivalDate": "2023-07-10",
+        "ArrivalTime": "05:00:00",
+        "InvoiceNo": "Inv02",
+        "CarNo": "T220210065",
+        "DriverName": "Arun Kumar",
+        "DriverPhone": "01056785678",
+        "DTL": "HMMI",
+        "Description": "PAD-C PILLAR",
+        "ReqQty": 100,
+        "AsnQty": 0,
+        "Stock":  0,
+        "PerCase": 10,
+        "BoxQty": 40,
+        "DeliveryQty": 60,
+        "GrType": "GRType02",
+        "Detail": [
+            {
+                "Date": "2023-05-10",
+                "Time": "11:40",
+                "ReqQty": "30"
+            },
+            {
+                "Date": "2023-05-11",
+                "Time": "12:30",
+                "ReqQty": "30"
+            }
+        ],
+        "Label": [
+            {
+                "BoxLabel": "B"
+            },
+            {
+                "BoxLabel": "C"
+            }
+        ]            
+    },
+    {
+        "DeliveryType": "JIT Call", 
+        "Vendor": "HCYU",
+        "Plant": "HK11",
+        "Material": "93480D2500",
+        "JitCallOrder": "order1",
+        "Description": "PAD-HEAD LINING ROOM LAMP",
+        "DeliveryDate": "2023-04-20",
+        "DeliveryTime": "02:00:00",
+        "RequestQty": 30,
+        "DeliveryQty": 10,
+        "BoxLabel": "label A",
+        "BoxQty": 20,
+        "Stock":  50,
+        "SafetyStock": 100                    
+    },
+    {
+        "DeliveryType": "JIT Call", 
+        "Vendor": "HCYU",
+        "Plant": "HK11",
+        "Material": "93480D2500",
+        "JitCallOrder": "order2",
+        "Description": "PAD-HEAD LINING ROOM LAMP",
+        "DeliveryDate": "2023-06-20",
+        "DeliveryTime": "04:00:00",
+        "RequestQty": 50,
+        "DeliveryQty": 20,
+        "BoxLabel": "label B",
+        "BoxQty": 30,
+        "Stock":  50,
+        "SafetyStock": 100                    
+    }    
+]

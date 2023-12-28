@@ -1,0 +1,8 @@
+/* Enter your custom styles here */
+
+.UploadSet {
+    display: none !important;
+}
+.tableFlex {
+    display: flex;
+}

@@ -1,0 +1,985 @@
+<mvc:View 
+controllerName="project3.controller.View1"
+xmlns="sap.m"
+xmlns:t="sap.ui.table" 
+xmlns:f="sap.f" 
+xmlns:mvc="sap.ui.core.mvc"
+xmlns:l="sap.ui.layout" 
+xmlns:form="sap.ui.layout.form"
+xmlns:core="sap.ui.core"
+xmlns:u="sap.ui.unified"
+xmlns:upload="sap.m.upload"
+displayBlock="true">
+    <f:DynamicPage id="page">
+    <f:title>
+        <f:DynamicPageTitle>
+        <f:heading>
+        <HBox>
+        <Text text="Packing Spec > 등록 및 접수 : PM02ERP" visible="{=!${link>/link}}"/>
+        <Text text="Packing Spec > 사양서 작성 및 제출 : PM30ERP"  visible="{link>/link}"/>
+        </HBox>
+        </f:heading>
+            <f:actions>
+                <HBox visible="{=!${link>/link}}">
+                    <Button icon="sap-icon://search" text="조회" press="onSearch" />
+                    <Button icon="sap-icon://write-new-document" text="입력" />
+                    <Button icon="sap-icon://edit" text="수정" />
+                    <Button icon="sap-icon://delete" text="삭제" />
+                    <Button icon="sap-icon://accounting-document-verification" text="접수" />
+                    <Button icon="sap-icon://cancel" text="취소" />
+                    <Button icon="sap-icon://excel-attachment" text="엑셀" press="onExcelDownload"/>
+                    <Button icon="sap-icon://refresh" press="onRefresh" type="Default"/>
+                </HBox>
+                <HBox visible="{link>/link}">
+                    <Button icon="sap-icon://refresh" text="새로고침" press="onRefresh" type="Default"/>
+                    <Button text="표준사양서" />
+                    <Button text="과거사례" />
+                    <Button text="조회" />
+                    <Button text="사양서복사" />
+                    <Button text="사양서제출" />
+                    <Button text="동일사양" />
+                    <Button text="신규사양" />                    
+                </HBox>
+            </f:actions>
+</f:DynamicPageTitle>
+        </f:title>             
+        <f:header>
+
+        <f:DynamicPageHeader pinnable="false">
+            <l:Grid  defaultSpan="XL12 L12 M12 S12">
+             <form:SimpleForm visible="{link>/link}"  >
+                
+                <Label text="* 공장" >
+                <layoutData>
+                    <l:GridData span="XL1 L1 M4 S8"/>
+                </layoutData>
+                </Label>
+
+                 <Select
+                        id="PlantPm30"
+                        forceSelection="false"
+                        width="auto"
+                        selectedKey="HK11"
+                        
+                        >
+                            <core:Item
+                                key="HK11"
+                                text="HK11 울산 CKD 공장"
+                                />
+                            <core:Item
+                                key="HK21"
+                                text="HK21 아산 CKD 공장"
+                                />
+                <layoutData>
+                    <l:GridData span="XL2 L2 M6 S10"/>
+                </layoutData>
+                </Select>
+                
+            
+                <Label text="* 포장사양분류" >                
+                <layoutData>
+                    <l:GridData span="XL1 L1 M4 S8"/>
+                </layoutData>
+                </Label>
+                <Input value="{topBarModel>/0/ZCPISP}" editable="false" >
+                <layoutData>
+                    <l:GridData span="XL2 L2 M6 S10"/>
+                </layoutData>                
+                </Input>
+           
+                <Label text="* 작성의뢰번호">
+                <layoutData>
+                    <l:GridData span="XL1 L1 M4 S8"/>
+                </layoutData>
+                </Label>
+                 <HBox>
+                 <Input value="{topBarModel>/0/ZCCRNO}" />
+                 <Button text="pdf" width="100%" press="onPdf"/>                 
+                 
+                 <Input value="{topBarModel>/0/ZCFUNC}" editable="false" />
+                 <layoutData>
+                    <l:GridData span="XL2 L2 M6 S10"/>
+                </layoutData>                 
+                 </HBox>   
+                 <HBox >
+                        <layoutData>
+                            <l:GridData span="XL12 L12 M12 S12" />
+                        </layoutData>
+                    </HBox>             
+                                             
+                
+                 
+                
+                <Label text="* 납품업체" >
+                <layoutData>
+                    <l:GridData span="XL1 L1 M4 S8"/>
+                </layoutData>
+                </Label>                
+                <HBox width="100%">
+                 <Input value="{topBarModel>/0/ZCLIFNR3}" width="100%" editable="false">                  
+                 </Input>
+                 <Input value="{topBarModel>/0/CompanyName}"  width="100%" editable="false">                  
+                 </Input>
+                   <layoutData>
+                        <l:GridData span="XL2 L2 M6 S10"/>
+                    </layoutData>
+                </HBox>                
+                
+                <Label text="* 자재번호">
+                    <layoutData>
+                        <l:GridData span="XL1 L1 M4 S8"/>
+                    </layoutData>
+                </Label>
+                <HBox>
+                 <Input value="{topBarModel>/0/MATNR}" editable="false"/>                 
+                 <Input value="{topBarModel>/0/material}" editable="false"/>
+                    <layoutData>
+                        <l:GridData span="XL2 L2 M6 S10"/>
+                    </layoutData>
+                 </HBox>
+                
+                <Label text="* 국가/차종" >
+                <layoutData>
+                    <l:GridData span="XL1 L1 M4 S8"/>
+                </layoutData>
+                </Label>
+                 <Select
+                        id="countryCar2"
+                        forceSelection="false"
+                        selectedKey="all" 
+                        class="sapUiSmallMarginEnd">
+                            <core:Item
+                                key="all"
+                                text="전체"
+                                />
+                                <layoutData>
+                    <l:GridData span="XL2 L2 M6 S10"/>
+                </layoutData>
+                </Select>
+
+                <Label text="* 적용사양번호" >
+                <layoutData>
+                    <l:GridData span="XL1 L1 M4 S8"/>
+                </layoutData>
+                </Label>
+                 <HBox>
+                 <Input value="">
+                 </Input>
+                 <Button icon="sap-icon://search"/>
+                 <Input value="{topBarModel>/0/submitCategory}"/>
+                <layoutData>
+                    <l:GridData span="XL2 L2 M6 S10"/>
+                </layoutData>
+                </HBox>                
+                </form:SimpleForm>
+                
+                <form:SimpleForm visible="{=!${link>/link}}">        
+                <Label text="* 공장" >
+                <layoutData>
+                    <l:GridData span="XL1 L1 M4 S8"/>
+                </layoutData>
+                </Label>
+
+                 <Select
+                        id="Plant"
+                        forceSelection="false"
+                        width="auto"
+                        fieldGroupIds="Required"
+                        selectedKey="" 
+                        change="onSearchInput" 
+                        >
+                            <core:Item
+                                key="HK11"
+                                text="HK11 울산 CKD 공장"
+                                />
+                            <core:Item
+                                key="HK21"
+                                text="HK21 아산 CKD 공장"
+                                />
+                <layoutData>
+                    <l:GridData span="XL2 L2 M6 S10"/>
+                </layoutData>
+                </Select>
+                
+            
+                <Label text="* 자재번호" >                
+                <layoutData>
+                    <l:GridData span="XL1 L1 M4 S8"/>
+                </layoutData>
+                </Label>
+                <Input value="" id="MATNR" class="sapUiSmallMarginEnd">
+                <layoutData>
+                    <l:GridData span="XL2 L2 M6 S10"/>
+                </layoutData>                
+                </Input>
+           
+                <Label text="* 국가/차종" >
+                <layoutData>
+                    <l:GridData span="XL1 L1 M4 S8"/>
+                </layoutData>
+                </Label>
+                 <Select
+                        id="countryCar"
+                        forceSelection="false"
+                        selectedKey="all" 
+                        class="sapUiSmallMarginEnd">
+                            <core:Item
+                                key="all"
+                                text="전체"
+                                />
+                                <layoutData>
+                    <l:GridData span="XL2 L2 M6 S10"/>
+                </layoutData>
+                                </Select>
+                
+           
+                <Label text="* 포장사양" >
+                <layoutData>
+                    <l:GridData span="XL1 L1 M4 S8"/>
+                </layoutData>
+                </Label>
+                 <Select
+                        id="packSpeci"
+                        forceSelection="false"
+                        selectedKey="all" 
+                        class="sapUiSmallMarginEnd">
+                            <core:Item
+                                key="all"
+                                text="전체"
+                                />
+                                <layoutData>
+                    <l:GridData span="XL2 L2 M6 S10"/>
+                </layoutData>
+                                </Select>
+                
+                <Label text="* 등록업체">
+                    <layoutData>
+                        <l:GridData span="XL1 L1 M4 S8"/>
+                    </layoutData>
+                </Label>
+                <Input change="onSearchInput"  value="" id="ZCLIFNR3" fieldGroupIds="Required">
+                    <layoutData>
+                        <l:GridData span="XL2 L2 M6 S10"/>
+                    </layoutData>
+                </Input>
+            
+                <Label text="* 작성요청일" >
+                    <layoutData>
+                        <l:GridData span="XL1 L1 M4 S8"/>
+                    </layoutData>
+                </Label>
+                <HBox>
+                <DatePicker id="DepartureDate1" value="{headerModel>/departureDate}" displayFormat="yyyy-MM-dd" valueFormat="yyyy-MM-dd" placeholder="- -"  change="dateChange" visible="{=!${save>/save}}">
+  
+                </DatePicker>
+                <Text text="~">
+                </Text>
+                <DatePicker id="DepartureDate2" value="{headerModel>/departureDate}" displayFormat="yyyy-MM-dd" valueFormat="yyyy-MM-dd" placeholder="- -" change="dateChange" visible="{=!${save>/save}}">
+                </DatePicker>
+                    <layoutData>
+                        <l:GridData span="XL2 L2 M6 S10"/>
+                    </layoutData>
+                </HBox>
+                <Label text="* 진행상태">
+                    <layoutData>
+                        <l:GridData span="XL1 L1 M4 S8"/>
+                    </layoutData>
+                </Label>
+                <Select change="onSearchInput"  id="ZCFUNC" forceSelection="false" fieldGroupIds="Required" selectedKey="{headerModel>/location}" visible="{=!${save>/save}}">
+                    <core:Item key="A" text="A 작성대상" />
+                    <core:Item key="B" text="B 작성의뢰" />
+                    <core:Item key="C" text="C 업체접수" />
+                    <core:Item key="D" text="D 업체제출" />
+                    <core:Item key="E" text="E HMC접수" />
+                    <core:Item key="F" text="F 포장비산출중" />
+                    <core:Item key="G" text="G 품의생성" />
+                    <core:Item key="H" text="H 승인중" />
+                    <core:Item key="X" text="X 삭제대상" />
+                    <core:Item key="Y" text="Y 일괄치환진행중" />
+                    <core:Item key="Z" text="Z 처리완료" />
+
+                    <layoutData>
+                        <l:GridData span="XL2 L2 M6 S10"/>
+                    </layoutData>
+                </Select>            
+                </form:SimpleForm>
+            </l:Grid>
+        </f:DynamicPageHeader>
+        </f:header>
+
+        <f:content>        
+        
+        <VBox>
+        <IconTabBar visible="{link>/link}"
+		id="idIconTabBarNoIcons"
+		expanded="{device>/isNoPhone}"
+		class="sapUiResponsiveContentPadding">
+		        
+                
+        <items>
+        
+			<IconTabFilter text="적입부품" key="info">
+            <HBox justifyContent="End">
+            
+                    <Button text="입력" press="onSaveFitPart" type="Emphasized"/>
+                    <Button text="수정" type="Ghost" press="onEditFitPart"/>
+                    <Button text="삭제" type="Ghost" press="onDeleteFitPart"/>
+                    <Button text="엑셀" press="onExcelDownload" type="Accept"/>
+                    
+            </HBox>
+            <form:SimpleForm>            
+                <HBox class="sapUiLargeMarginBegin">
+                <VBox alignItems="Center" class="sapUiLargeMarginEnd">
+                <Avatar id="partsImage" fieldGroupIds="image" displayShape="Square" displaySize="Custom"  press="onAvatarPress" customDisplaySize="16rem"/>
+                <Text text="부품사진"  width="100%" textAlign="Center"/>
+                
+                <!-- <u:FileUploader
+                id="fileUploader"
+                name="myFileUpload"
+                change=""
+                uploadComplete="handleUploadComplete">                
+                </u:FileUploader> -->
+                <upload:UploadSet id="UploadSet" class="UploadSet"
+										  fileTypes="jpeg,png,svg,jpg"		
+                                          mode="None"	
+                                          fieldGroupIds="image"
+                                            visible="true"
+                                            multiple="false"
+											dragDropDescription="dragDrop"
+											dragDropText="dragText"
+											instantUpload="false"
+											beforeItemAdded="onBeforeItemAdded"
+											afterItemRemoved="onAfterItemRemoved"
+											sameFilenameAllowed="false"
+											maxFileNameLength="200"
+											fileNameLengthExceeded="onFileNameLengthExceeded"
+											showIcons="true"
+											uploadEnabled="true"
+											selectionChanged="onSelectionChange"
+											fileRenamed="onFileRenamed">
+											<upload:items>
+											</upload:items>
+			    </upload:UploadSet>	
+
+                <layoutData>
+                        <l:GridData span="XL3 L4 M6 S12"/>
+                    </layoutData>
+                </VBox>
+                
+                <VBox alignItems="Center">
+                <Avatar id="vanImage"  displayShape="Square" displaySize="Custom" fieldGroupIds="image" press="onAvatarPress2" customDisplaySize="16rem"/>
+                <Label text="적입부품" width="100%" textAlign="Center"></Label>
+                
+                <upload:UploadSet id="UploadSet2" class="UploadSet"
+										  fileTypes="jpeg,png,svg,jpg"		
+                                          mode="None"	
+                                            visible="true"
+                                            multiple="false"
+                                            fieldGroupIds="image"
+											dragDropDescription="dragDrop"
+											dragDropText="dragText"
+											instantUpload="false"
+											beforeItemAdded="onBeforeItemAdded"
+											afterItemRemoved="onAfterItemRemoved"
+											sameFilenameAllowed="false"
+											maxFileNameLength="200"
+											fileNameLengthExceeded="onFileNameLengthExceeded"
+											showIcons="true"
+											uploadEnabled="true"
+											selectionChanged="onSelectionChange"
+											fileRenamed="onFileRenamed">
+											<upload:items>
+											</upload:items>
+			    </upload:UploadSet>	
+
+                <!-- <u:FileUploader
+                id="fileUploader1"                
+                name="myFileUpload"
+                change="onBfItemAdded"
+                uploadComplete="handleUploadComplete"
+                >
+                
+                </u:FileUploader>                 -->
+                <layoutData>
+                        <l:GridData span="XL3 L4 M6 S12"/>
+                    </layoutData>
+                </VBox>
+                </HBox>
+            <l:Grid defaultSpan="XL12 L12 M12 S12">
+            <Label text="자재번호">
+                    <layoutData>
+                        <l:GridData span="XL2 L2 M6 S12"/>
+                    </layoutData>
+                </Label>
+                <HBox>
+                <Input id="fMATNR" value="{vanningModel>/0/MATNR}" editable="false" >            
+                </Input>
+                <Input value="{vanningModel>/0/material}" editable="false">            
+                </Input>
+                 <layoutData>
+                        <l:GridData span="XL4 L4 M6 S12"/>
+                    </layoutData>
+                </HBox>
+                   
+                
+            
+            <Label text="전화번호">
+                    <layoutData>
+                        <l:GridData span="XL2 L2 M6 S12"/>
+                    </layoutData>
+                </Label>
+                <Input id="fPhone" value="{vanningDetail>/0/phone}" >            
+                    <layoutData>
+                        <l:GridData span="XL4 L4 M6 S12"/>
+                    </layoutData>
+                </Input>
+            
+            <Label text="Usage">
+                    <layoutData>
+                        <l:GridData span="XL2 L2 M6 S12"/>
+                    </layoutData>
+                </Label>
+                <Input id="fusage" value="{vanningDetail>/0/Usage}" >            
+                    <layoutData>
+                        <l:GridData span="XL4 L4 M6 S12"/>
+                    </layoutData>
+                </Input>
+            
+            <Label text="적입수량">
+                    <layoutData>
+                        <l:GridData span="XL2 L2 M6 S12"/>
+                    </layoutData>
+                </Label>
+                <Input id="fstuffingQty" value="{vanningDetail>/0/stuffingQty}">            
+
+                    <layoutData>
+                        <l:GridData span="XL4 L4 M6 S12"/>
+                    </layoutData>
+                </Input>
+            
+            <Label text="적입률">
+                    <layoutData>
+                        <l:GridData span="XL2 L2 M6 S12"/>
+                    </layoutData>
+                </Label>
+                <Input id="fstuffingRate" value="{vanningDetail>/0/stuffingRate}" >            
+                    <layoutData>
+                        <l:GridData span="XL4 L4 M6 S12"/>
+                    </layoutData>
+                </Input>
+            
+            <Label text="표면처리">
+                    <layoutData>
+                        <l:GridData span="XL2 L2 M6 S12"/>
+                    </layoutData>
+                </Label>
+                <CheckBox id="fsurface" selected="{vanningDetail>/0/surface}" fieldGroupIds="checkBox">
+                    <layoutData>
+                        <l:GridData span="XL4 L4 M6 S12"/>
+                    </layoutData>
+                </CheckBox>
+
+            <Label text="재질">
+                    <layoutData>
+                        <l:GridData span="XL2 L2 M6 S12"/>
+                    </layoutData>
+                </Label>
+                <Select id="ftexture" width="100%" forceSelection="false">  
+                <!-- selectedKey="{vanningDetail/0/texture}" -->
+                <core:Item key="pl" text="PLASTIC" />        
+                <core:Item key="ru" text="RUBBER" />        
+                <core:Item key="st" text="STEEL" />        
+                <core:Item key="et" text="기타" />        
+                    <layoutData>
+                        <l:GridData span="XL4 L4 M6 S12"/>
+                    </layoutData>
+                </Select>
+            
+            <Label text="칼라">
+                    <layoutData>
+                        <l:GridData span="XL2 L2 M6 S12"/>
+                    </layoutData>
+                </Label>
+                <CheckBox id="fcolor" selected="{vanningDetail>/0/color}" fieldGroupIds="checkBox">
+                    <layoutData>
+                        <l:GridData span="XL4 L4 M6 S12"/>
+                    </layoutData>
+                </CheckBox>            
+            
+            <Label text="가로(mm)">
+                    <layoutData>
+                        <l:GridData span="XL2 L2 M6 S12"/>
+                    </layoutData>
+                </Label>
+                <Input id="fwidth" value="{vanningDetail>/0/width}" >            
+                    <layoutData>
+                        <l:GridData span="XL4 L4 M6 S12"/>
+                    </layoutData>
+                </Input>
+            
+            <Label text="세로(mm)">
+                    <layoutData>
+                        <l:GridData span="XL2 L2 M6 S12"/>
+                    </layoutData>
+                </Label>
+                <Input id="fheight" value="{vanningDetail>/0/height}" >            
+                    <layoutData>
+                        <l:GridData span="XL4 L4 M6 S12"/>
+                    </layoutData>
+                </Input>       
+            
+            
+            
+            <Label text="높이(mm)">
+                    <layoutData>
+                        <l:GridData span="XL2 L2 M6 S12"/>
+                    </layoutData>
+                </Label>
+                <Input id="flength" value="{vanningDetail>/0/length}">            
+                    <layoutData>
+                        <l:GridData span="XL4 L4 M6 S12"/>
+                    </layoutData>
+                </Input>
+            
+            <Label text="두께(mm)">
+                    <layoutData>
+                        <l:GridData span="XL2 L2 M6 S12"/>
+                    </layoutData>
+                </Label>
+                <Input id="fthickness" value="{vanningDetail>/0/thickness}">            
+                    <layoutData>
+                        <l:GridData span="XL4 L4 M6 S12"/>
+                    </layoutData>
+                </Input>
+            <Label text="작성자명">
+                    <layoutData>
+                        <l:GridData span="XL2 L2 M6 S12"/>
+                    </layoutData>
+                </Label>
+                <Input id="fZNPERNR" value="{vanningDetail>/0/ZNPERNR}">            
+                    <layoutData>
+                        <l:GridData span="XL4 L4 M6 S12"/>
+                    </layoutData>
+                </Input>
+
+            <Label text="무게(g)">
+                    <layoutData>
+                        <l:GridData span="XL2 L2 M6 S12"/>
+                    </layoutData>
+                </Label>
+                <Input id="fweight" value="{vanningDetail>/0/weight}">            
+                    <layoutData>
+                        <l:GridData span="XL4 L4 M6 S12"/>
+                    </layoutData>
+                </Input> 
+            <Label text="특이사항">
+                    <layoutData>
+                        <l:GridData span="XL2 L2 M6 S12"/>
+                    </layoutData>
+                </Label>
+                <TextArea id="fremark" value="{vanningDetail>/0/remark}" width="100%">            
+                    <layoutData>
+                        <l:GridData span="XL4 L4 M6 S12"/>
+                    </layoutData>
+                </TextArea>  
+
+            <Label text="HMC의견">
+                    <layoutData>
+                        <l:GridData span="XL2 L2 M6 S12"/>
+                    </layoutData>
+                </Label>
+                <TextArea id="fHMCOpinion" value="{vanningDetail>/0/HMCOpinion}" width="100%">            
+                    <layoutData>
+                        <l:GridData span="XL4 L4 M6 S12"/>
+                    </layoutData>
+                </TextArea>         
+            
+
+            <!-- <Button
+                text="Upload File"
+                press="onUploadImage"/> -->
+                  </l:Grid>              
+        </form:SimpleForm>		
+        
+        <form:SimpleForm >
+        <t:Table        
+                    id="vanningTable"
+                    rows="{ path:'vanningModel>/'}"
+                    selectionMode="Single"
+                    paste="onPaste"
+                    ariaLabelledBy="title"
+                    
+                    rowSelectionChange="onCell"
+                    
+                    >
+                    <t:extension>
+                        <OverflowToolbar>
+                          <Text text="적입부품 LIST"/>
+                        </OverflowToolbar>
+                    </t:extension>
+                    <t:columns>
+                        <t:Column width="9rem" >
+                            <Text text="자재번호" />
+                            <t:template>
+                                <Text text="{vanningModel>MATNR}"/>                                
+                                
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="12rem">
+                            <Text text="자재명"/>
+                            <t:template>
+                                    <Text text="{vanningModel>material}"/>                                    
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="">
+                            <Text text="Usage"/>
+                            <t:template>
+                                    <Text text="{vanningModel>Usage}"/>
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="">
+                            <Text text="적입수량"/>
+                            <t:template>
+                                    <Text text="{vanningModel>stuffingQty}"/>
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="" >
+                            <Text text="적입률"/>
+                            <t:template>
+                                    <Text text="{vanningModel>stuffingRate}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="">
+                            <Text text="표면처리"/>
+                            <t:template>
+                                    <Text text="{=${vanningModel>surface} ? 'Y' : 'N'}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="">
+                            <Text text="칼라"/>
+                            <t:template>
+                                    <Text text="{=${vanningModel>color} ? 'Y' : 'N'}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="">
+                            <Text text="재질"/>
+                            <t:template>
+                                    <Text text="{vanningModel>texture}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="">
+                            <Text text="가로"/>
+                            <t:template>
+                                    <Text text="{vanningModel>width}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="">
+                            <Text text="세로"/>
+                            <t:template>
+                                <Text text="{vanningModel>length}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="">
+                            <Text text="높이"/>
+                            <t:template>
+                                <Text text="{vanningModel>height}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="">
+                            <Text text="두께"/>
+                            <t:template>
+                                <Text text="{vanningModel>thickness}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="">
+                            <Text text="부품중량"/>
+                            <t:template>
+                                <Text text="{vanningModel>weight}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="">
+                            <Text text="자재크기"/>
+                            <t:template>
+                                <Text text="{vanningModel>size}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="">
+                            <Text text="담당자"/>
+                            <t:template>
+                                <Text text="{vanningModel>ZNPERNR}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="8rem">
+                            <Text text="전화번호"/>
+                            <t:template>
+                                <Text text="{vanningModel>phone}" />
+                            </t:template>
+                        </t:Column>
+                    </t:columns>
+                    
+                </t:Table>
+                
+                </form:SimpleForm>          		
+			</IconTabFilter>
+			<IconTabFilter text="동일사양부품" key="attachments" enabled="false">				
+			</IconTabFilter>
+			<IconTabFilter text="포장재" key="notes" enabled="false">				
+			</IconTabFilter>
+			<IconTabFilter text="포장사양" key="people" enabled="false">				
+			</IconTabFilter>
+            <IconTabFilter text="공수" key="people" visible="{link>/link}">	
+            <t:Table
+                            id="airliftTable"
+                            rows="{ path:'airliftModel>/'}"
+                            selectionMode="MultiToggle"
+                            paste="onPaste"
+                            rowMode="Interactive"
+                            
+                            ariaLabelledBy="title">
+                            <t:extension>
+                                <OverflowToolbar>
+                                    <Text text="공수정보"/>
+                                    <ToolbarSpacer />
+                                    <Button text="입력" type="Transparent" press="onSaveAirlift"/>
+                                    <Button text="수정" type="Transparent" press="onEditAirlift"/>
+                                    <Button text="삭제" type="Transparent"   press=""/>
+                                </OverflowToolbar>
+                            </t:extension>
+                            <t:columns>
+                                <t:Column width="10%" hAlign="Center" >
+                                    <Text text="자재번호" />
+                                    <t:template>
+                                    <HBox>
+                                        <Text text="{airliftModel>MATNR}" id="airLiftMATNR" />
+                                    </HBox>                                    
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="15%" hAlign="Center">
+                                    <Text text="자재크기"/>
+                                    <t:template>
+                                        <HBox>
+                                            <Text text="{airliftModel>size}" id="airLiftSize"/>
+                                        </HBox> 
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="8%" hAlign="Center">
+                                    <Text text="포장유형"/>
+                                    <t:template>
+                                        <HBox>
+                                            <Text text="{airliftModel>packagingType}" id="airLiftPackagingType"/>
+                                        </HBox> 
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="14rem" hAlign="Center"> 
+                                    <Text text="포장방법" />
+                                    <t:template>                                        
+                                            <Select width="100%" id="packagingHow" selectedKey="{airliftModel>packagingHow}" forceSelection="false">
+                                                <core:Item key="S01" text="S01 소물부품 묶음포장" />
+                                                <core:Item key="S36" text="S36 소물부품 C/BOX 포장" />
+                                            </Select>                                        
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="27rem" hAlign="Center">
+                                    <Text text="포장방법상세"/>
+                                    <t:template>
+                                        <VBox id="DetailBox" width="100%" >
+                                            <Select width="100%" id="packagingDetailS01" forceSelection="false" selectedKey="{airliftModel>packagingDetail}" visible="{= ${airliftModel>packagingHow} === 'S01' ? true : false}" >
+                                                <core:Item key="S0101" text="S0101 소물부품 묶음포장" />
+                                            </Select>                                            
+                                            <Select width="100%" id="packagingDetailS36"  forceSelection="false" selectedKey="{airliftModel>packagingDetail}" visible="{= ${airliftModel>packagingHow} === 'S36' ? true : false}" >
+                                                <core:Item key="S3601" text="S3601 소물부품 C/BOX포장" />
+                                                <core:Item key="S3602" text="S3602 소물부품 C/BOX포장+전체비닐" />
+                                                <core:Item key="S3603" text="S3603 소물부품 C/BOX포장+100개 소포장 (비닐/TRAY外)" />
+                                                <core:Item key="S3604" text="S3604 소물부품 C/BOX포장+200개 소포장 (비닐/TRAY外)" />
+                                                <core:Item key="S3605" text="S3605 소물부품 C/BOX포장+300개 소포장 (비닐/TRAY外)" />
+                                                <core:Item key="S3606" text="S3606 소물부품 C/BOX포장+격자패드+ 셀內 적입" />
+                                                <core:Item key="S3607" text="S3607 소물부품 C/BOX포장+부품정렬적입 (150개이하)" />
+                                                <core:Item key="S3608" text="S3608 소물부품 C/BOX포장+부품정렬적입 (150개초과)" />
+                                            </Select>
+                                            
+                                        </VBox>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="10%"  hAlign="Center">
+                                    <Text text="적입수량(EA)"  />
+                                    <t:template>
+                                        <HBox>
+                                            <Text text="{airliftModel>stuffingQty}" id="airLiftStuffingQty" />
+                                        </HBox>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="9%"  hAlign="Center">
+                                    <Text text="중포장수" />
+                                    <t:template>
+                                        <HBox>
+                                            <Input value="{airliftModel>packagingQty}" id="airLiftPackagingQty" type="Number" change="onInputChange"/>
+                                        </HBox>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="10%"  hAlign="Center">
+                                    <Text text="작업공수(중포장)"/>
+                                    <t:template>
+                                        <HBox>
+                                            <Text text="{airliftModel>HeavyPackagingCount}" id="airLiftHeavyPackagingCount" />
+                                        </HBox>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="12%"  hAlign="Center">
+                                    <Text text="표준공수산출식"/>
+                                    <t:template>
+                                        <HBox>
+                                            <Text text="{airliftModel>calculationFormula}" id="airLiftCalculationFormula" />
+                                        </HBox>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="8%"  hAlign="Center">
+                                    <Text text="OK"/>
+                                    <t:template>
+                                        <Text text=""/>
+                                    </t:template>
+                                </t:Column>                                
+                            </t:columns>
+                        </t:Table>			
+                        <t:Table
+                            id="packingTypeTable"
+                            rows="{ path:'packingTypeModel>/'}"
+                            selectionMode="Single"
+                            paste="onPaste"
+                            ariaLabelledBy="title"                            
+                            rowSelectionChange="onPackingTypeSelect">
+                            <t:columns>
+                                <t:Column width="15%"  hAlign="Center" >
+                                    <Text text="포장유형" />
+                                    <t:template>
+                                        <Text text="{packingTypeModel>packagingType}" />
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="7rem"   hAlign="Center">
+                                    <Text text="포장방법"/>
+                                    <t:template>
+                                            <Text text="{packingTypeModel>packagingHow}" maxLines="1"/>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="8rem"  hAlign="Center">
+                                    <Text text="포장방법상세"/>
+                                    <t:template>
+                                            <Text text="{packingTypeModel>packagingDetail}"  maxLines="1"/>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="8%"  hAlign="Center">
+                                    <Text text="포장항목코드"/>
+                                    <t:template>
+                                            <Text text="{packingTypeModel>packagingCode}" />
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="10%"  hAlign="Center">
+                                    <Text text="포장항목코드명"/>
+                                    <t:template>
+                                            <Text text="{packingTypeModel>packagingCodeName}" />
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="10%"  hAlign="Center">
+                                    <Text text="작업시간"/>
+                                    <t:template>
+                                            <Text text="{packingTypeModel>time}" />
+                                    </t:template>
+                                </t:Column>                                                                
+                            </t:columns>
+                        </t:Table>
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+        <form:SimpleForm >
+        <t:Table    
+                    visible="{=!${link>/link}}"
+                    
+                    id="packingTable"
+                    rows="{ path:'packingTableModel>/'}"
+                    selectionMode="MultiToggle"
+                    paste="onPaste"
+                    ariaLabelledBy="title">                    
+                    <t:columns>
+                        <t:Column width="7rem" >
+                            <Text text="자재번호" />
+                            <t:template>
+                                <Text text="{packingTableModel>MATNR}"/>
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="13rem">
+                            <Text text="자재명"/>
+                            <t:template>
+                                    <Text text="{packingTableModel>material}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="10%">
+                            <Text text="국가차종"/>
+                            <t:template>
+                                    <Text text="{packingTableModel>ZCKDCAR}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="10%">
+                            <Text text="포장사양"/>
+                            <t:template>
+                                    <Text text="{packingTableModel>ZCPISP}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="10%" >
+                            <Text text="제출구분"/>
+                            <t:template>
+                                    <Text text="{packingTableModel>submitCategory}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="9rem">
+                            <Text text="작성의뢰번호"/>
+                            <t:template>
+                                    <Link text="{packingTableModel>ZCCRNO}" press="onLink"/>
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="8rem">
+                            <Text text="작성사유"/>
+                            <t:template>
+                                    <Text text="{packingTableModel>ZCCRRE}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="10%">
+                            <Text text="담당자"/>
+                            <t:template>
+                                    <Text text="{packingTableModel>ZNPERNR}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="10%">
+                            <Text text="진행상태"/>
+                            <t:template>
+                                    <Text text="{packingTableModel>ZCFUNC}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="10%">
+                            <Text text="취소사유"/>
+                            <t:template>
+                                <Text text="{packingTableModel>ZECARE}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="10%">
+                            <Text text="사양번호"/>
+                            <t:template>
+                                <Text text="{packingTableModel>ZCSPNO}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="8%">
+                            <Text text="OK"/>
+                            <t:template>
+                                <Text text="" />
+                            </t:template>
+                        </t:Column>
+                    </t:columns>
+                    
+                </t:Table>       
+                
+        </form:SimpleForm>
+
+        
+        </VBox>
+        
+        </f:content>        
+    </f:DynamicPage>
+</mvc:View>

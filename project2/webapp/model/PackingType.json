@@ -1,0 +1,66 @@
+[   
+    {
+        "packagingType": "S 중포장",
+        "packagingHow": "S37 C/BOX內 소포장 적입 / 보호캡 적용(1)",
+        "packagingDetail": "S3701 소BOX에 개별 포장 후 중BOX 포장(1)",
+        "packagingCode": "SG",
+        "packagingCodeName": "방청유",
+        "time": "0.0"
+    },
+    {
+        "packagingType": "S 중포장",
+        "packagingHow": "S37 C/BOX內 소포장 적입 / 보호캡 적용(2)",
+        "packagingDetail": "S3701 소BOX에 개별 포장 후 중BOX 포장(2)",
+        "packagingCode": "SC",
+        "packagingCodeName": "묶음작업",
+        "time": "0.0"
+    },
+    {
+        "packagingType": "S 중포장",
+        "packagingHow": "S37 C/BOX內 소포장 적입 / 보호캡 적용(3)",
+        "packagingDetail": "S3701 소BOX에 개별 포장 후 중BOX 포장(3)",
+        "packagingCode": "SD",
+        "packagingCodeName": "비닐포장",
+        "time": "0.0"
+    },
+    {
+        "packagingType": "S 중포장",
+        "packagingHow": "S37 C/BOX內 소포장 적입 / 보호캡 적용(4)",
+        "packagingDetail": "S3701 소BOX에 개별 포장 후 중BOX 포장(4)",
+        "packagingCode": "SF",
+        "packagingCodeName": "PAD삽입",
+        "time": "0.0"
+    },
+    {
+        "packagingType": "S 중포장",
+        "packagingHow": "S37 C/BOX內 소포장 적입 / 보호캡 적용(5)",
+        "packagingDetail": "S3701 소BOX에 개별 포장 후 중BOX 포장(5)",
+        "packagingCode": "SH",
+        "packagingCodeName": "마무리",
+        "time": "25.0"
+    },
+    {
+        "packagingType": "S 중포장",
+        "packagingHow": "S37 C/BOX內 소포장 적입 / 보호캡 적용(6)",
+        "packagingDetail": "S3701 소BOX에 개별 포장 후 중BOX 포장(6)",
+        "packagingCode": "SE",
+        "packagingCodeName": "제품적입",
+        "time": "4.0"
+    },
+    {
+        "packagingType": "S 중포장",
+        "packagingHow": "S37 C/BOX內 소포장 적입 / 보호캡 적용(7)",
+        "packagingDetail": "S3701 소BOX에 개별 포장 후 중BOX 포장(7)",
+        "packagingCode": "SA",
+        "packagingCodeName": "BOX조립",
+        "time": "30.0"
+    },
+    {
+        "packagingType": "S 중포장",
+        "packagingHow": "S37 C/BOX內 소포장 적입 / 보호캡 적용(8)",
+        "packagingDetail": "S3701 소BOX에 개별 포장 후 중BOX 포장(8)",
+        "packagingCode": "SB",
+        "packagingCodeName": "PAD조립",
+        "time": "25.0"
+    }
+]

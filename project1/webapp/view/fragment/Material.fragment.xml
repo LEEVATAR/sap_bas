@@ -1,0 +1,36 @@
+<core:FragmentDefinition 
+    xmlns="sap.m" 
+    xmlns:f="sap.ui.layout.form" 
+    xmlns:ui="sap.ui.table" 
+    xmlns:core="sap.ui.core">
+    <Dialog id="materialDialog" title="Select Material" contentHeight="450px" contentWidth="500px">
+        <content>
+            <Toolbar>
+                <OverflowToolbar>
+                    <SearchField id="materialSearch" placeholder="검색" search=".onMaterialSearch" width="10rem" class="sapUiSmallMarginBeginEnd" />
+                    <ToolbarSpacer />
+                </OverflowToolbar>
+            </Toolbar>
+
+            <Table id="materialTable" items="{path:'materialModel>/'}"   mode="SingleSelectLeft">
+                <columns>
+                    <Column width="100%">
+                        <Text text="Material" />
+                    </Column>
+                </columns>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{materialModel>material}" />
+                    </cells>
+                </ColumnListItem>
+            </Table>
+        </content>
+
+        <beginButton>
+            <Button text="Confirm" type="Emphasized" press="onMaterialSave" />
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" type="Transparent" press="onMaterialCancel" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

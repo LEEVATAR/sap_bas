@@ -1,0 +1,26 @@
+[   
+    {
+        "MATNR": "2181025020",
+        "size": "Q 자재크기-소물",
+        "packagingType": "S 중포장",
+        "packagingHow": "",
+        "packagingDetail": "",
+        "stuffingQty": 10,
+        "packagingQty": "",
+        "gongsu":"",
+        "formula":"",
+        "visible": true
+    },
+    {
+        "MATNR": "2181025020",
+        "size": "Q 자재크기-소물",
+        "packagingType": "S 중포장",
+        "packagingHow": "",
+        "packagingDetail": "",
+        "stuffingQty": 10,
+        "packagingQty": "",
+        "gongsu":"",
+        "formula":"",
+        "visible": true       
+    }
+]
